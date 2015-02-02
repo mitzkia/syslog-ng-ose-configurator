@@ -1,0 +1,49 @@
+<!--
+ * syslog-ng OSE configurator
+ *
+ * Copyright 2012, Andras Mitzki
+ * License: GNU GENERAL PUBLIC LICENSE v3
+ *
+ * Date: Wed Dec 19 10:03:56 CET 2012
+-->
+
+<html>
+<body>
+<br />
+<h1>Global Options</h1>
+<br />
+<input type="search" ng-model="search" placeholder="Search..."/>
+<table class="bordered">
+    <thead>
+        <tr>
+            <th >Enable/Disable Option</th>
+            <th >Option Name</th>
+            <th >Option Value</th>
+            <th >Accepted Value</th>
+            <th >Description</th>
+       </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="data in options.global_options | filter:search | orderBy:'name'">
+        <td>Enable this option: <input name="Checkbox1" type="checkbox" style="vertical-align: middle" ng-model="data.enabled"/></td>
+        <td>{{data.name}}</td>
+        <td>
+<!--yesno-->
+<select name="{{data.name}}" class="syslog_ng_element" ng-show="data.input_type == 'select'" ng-disabled="!data.enabled" ng-model="data.value"><option>yes</option><option>no</option></select>
+<!--number-->
+<input name="{{data.name}}" class="syslog_ng_element" type="number" ng-show="data.input_type == 'number'" ng-disabled="!data.enabled" ng-model="data.value"/>
+<!--string-->
+<input name="{{data.name}}" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text'" ng-disabled="!data.enabled" ng-model="data.value"/>
+<!--egyedi-->
+<select name="use_dns" class="syslog_ng_element" ng-show="data.input_type == 'select_use_dns'" ng-disabled="!data.enabled" ng-model="data.value"><option>yes</option><option>no</option><option>persist_only</option></select>
+<select name="ts_format" class="syslog_ng_element" ng-show="data.input_type == 'select_ts_format'" ng-disabled="!data.enabled" ng-model="data.value"><option>RFC3164(BSD)</option><option>RFC3339(ISO)</option></select>
+<select name="stats_level" class="syslog_ng_element" ng-show="data.input_type == 'select_stats_level'" ng-disabled="!data.enabled" ng-model="data.value"><option>0</option><option>1</option><option>2</option></select>
+<select name="mark_mode" class="syslog_ng_element" ng-show="data.input_type == 'select_mark_mode'" ng-disabled="!data.enabled" ng-model="data.value"><option>internal</option><option>dst_idle</option><option>host_idle</option><option>periodical</option><option>none</option><option>global</option></select>
+        </td>
+        <td>{{data.accepted_value}}</td>
+        <td>{{data.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

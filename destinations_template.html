@@ -1,0 +1,154 @@
+<!--
+ * syslog-ng OSE configurator
+ *
+ * Copyright 2012, Andras Mitzki
+ * License: GNU GENERAL PUBLIC LICENSE v3
+ *
+ * Date: Wed Dec 19 10:03:56 CET 2012
+-->
+
+<html>
+<body>
+    <nav id="horizontal_menu">
+        <ul>
+            <li><a href="#destination-drivers/dfile">File</a></li>
+            <li><a href="#destination-drivers/dmongodb">Mongodb</a></li>
+            <li><a href="#destination-drivers/dpipe">Pipe</a></li>
+            <li><a href="#destination-drivers/dprogram">Program</a></li>
+            <li><a href="#destination-drivers/dsql">SQL</a></li>
+            <li><a href="#destination-drivers/dsyslog">Syslog</a></li>
+            <li><a href="#destination-drivers/dtcp">TCP</a></li>
+            <li><a href="#destination-drivers/dudp">UDP</a></li>
+            <li><a href="#destination-drivers/dunixstream">UnixStream</a></li>
+            <li><a href="#destination-drivers/dunixdgram">UnixDgram</a></li>
+            <li><a href="#destination-drivers/dusertty">Usertty</a></li>
+        </ul>
+    </nav>
+    <form>
+        <br />
+        <h1>{{name}} Destination Driver</h1>
+
+        <br />
+        <a href="" class="button" ng-click="add_new_destination()">Add New Destination Driver</a>
+        <input class="button" type="submit" value="Validate Settings" />
+        <a href="" class="button" ng-click="remove_destination()">Remove Specified Driver</a><input type="text" ng-model="selected_for_remove_group_name" placeholder="Add name for removing driver">
+        <hr />
+        <br />
+
+        <ul id="box">
+            <li ng-repeat="new_data in all_destinations ">
+
+                <br />
+                <p>Add a unique name to this destination: </p>
+                <input class="syslog_ng_element" type="text" ng-model="new_data.destination_name" placeholder="NAME" required="required" />
+                <br />
+                <input type="search" ng-model="search" placeholder="Search..."/>
+                <div class="right">
+                    <p>Show / Hide table: </p>
+                    <input type="checkbox" ng-model="checked" />
+                </div>
+
+                <table class="bordered" id="{{name}}_destination" ng-show="!checked">
+                    <thead>
+                        <tr>
+                            <th>Enable/Disable Option</th>
+                            <th>Option name</th>
+                            <th>Option value</th>
+                            <th>Accepted value</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="data in new_data.options | filter:search | orderBy:'name'">
+                            <td>Enable this option: <input name="Checkbox1" type="checkbox" style="vertical-align: middle" ng-model="data.enabled" /></td>
+                            <td>{{data.name}}</td>
+                            <td>
+                                <!--yesno-->
+                                <select name="{{data.name}}" class="syslog_ng_element" ng-show="data.input_type == 'select'" ng-disabled="!data.enabled" ng-model="data.value">
+                                    <option>yes</option>
+                                    <option>no</option>
+                                </select>
+                                <!--number-->
+                                <input name="{{data.name}}" class="syslog_ng_element" type="number" ng-show="data.input_type == 'number'" ng-disabled="!data.enabled" ng-model="data.value"/>
+                                <!--string-->
+                                <input name="{{data.name}}" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text'" ng-disabled="!data.enabled" ng-model="data.value"/>
+                                <!--egyedi-->
+                                <input name="file_name" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text_file_name'" ng-disabled="!data.enabled" ng-model="data.value" required="required" />
+                                <input name="pipe_name" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text_pipe_name'" ng-disabled="!data.enabled" ng-model="data.value" required="required" />
+                                <input name="program_name" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text_program_name'" ng-disabled="!data.enabled" ng-model="data.value" required="required" />
+                                <input name="columns" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text_columns'" ng-disabled="!data.enabled" ng-model="data.value" required="required" />
+                                <input name="database" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text_database'" ng-disabled="!data.enabled" ng-model="data.value" required="required" />
+                                <input name="table" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text_table'" ng-disabled="!data.enabled" ng-model="data.value" required="required" />
+                                <input name="values" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text_values'" ng-disabled="!data.enabled" ng-model="data.value" required="required" />
+                                <input name="ip" class="syslog_ng_element" type="text" ng-show="data.input_type == 'text_ip'" ng-disabled="!data.enabled" ng-model="data.value" required="required" />
+                                <select name="ts_format" class="syslog_ng_element" ng-show="data.input_type == 'select_ts_format'" ng-disabled="!data.enabled" ng-model="data.value">
+                                    <option>RFC3164(BSD)</option>
+                                    <option>RFC3339(ISO)</option>
+                                </select>
+                                <select name="flags" class="syslog_ng_element" multiple="multiple" ng-show="data.input_type == 'select_flags'" ng-disabled="!data.enabled" ng-model="data.value">
+                                    <option>no-parse</option>
+                                    <option>check-hostname</option>
+                                    <option>syslog-protocol</option>
+                                    <option>assume-utf8</option>
+                                    <option>validate-utf8</option>
+                                    <option>no-multi-line</option>
+                                    <option>store-legacy-msghdr</option>
+                                    <option>dont-store-legacy-msghdr</option>
+                                    <option>expect-hostname</option>
+                                    <option>no-hostname</option>
+                                    <option>kernel</option>
+                                    <option>empty-lines</option>
+                                    <option>threaded</option>
+                                </select>
+                                <select name="flags" class="syslog_ng_element" multiple="multiple" ng-show="data.input_type == 'select_sql_flags'" ng-disabled="!data.enabled" ng-model="data.value">
+                                    <option>dont-create-tables</option>
+                                    <option>explicit-commits</option>
+                                </select>
+                                <select name="mark_mode" class="syslog_ng_element" ng-show="data.input_type == 'select_mark_mode'" ng-disabled="!data.enabled" ng-model="data.value">
+                                    <option>internal</option>
+                                    <option>dst_idle</option>
+                                    <option>host_idle</option>
+                                    <option>periodical</option>
+                                    <option>none</option>
+                                    <option>global</option>
+                                </select>
+                                <select name="peer_verify" class="syslog_ng_element" ng-show="data.input_type == 'select_peer_verify'" ng-disabled="!data.enabled" ng-model="data.value">
+                                    <option>optional-trusted</option>
+                                    <option>optional-untrusted</option>
+                                    <option>required-trusted</option>
+                                    <option>required-untrusted</option>
+                                </select>
+                                <select name="transport" class="syslog_ng_element" ng-show="data.input_type == 'select_transport'" ng-disabled="!data.enabled" ng-model="data.value">
+                                    <option>tcp</option>
+                                    <option>udp</option>
+                                    <option>syslog</option>
+                                    <option>tls</option>
+                                </select>
+                                <select name="type" class="syslog_ng_element" ng-show="data.input_type == 'select_type'" ng-model="data.value" required="required">
+                                    <option>mssql</option>
+                                    <option>mysql</option>
+                                    <option>oracle</option>
+                                    <option>postgres</option>
+                                </select>
+                            </td>
+                            <td>{{data.accepted_value}}</td>
+                            <td>{{data.description}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Enable/Disable Option</th>
+                            <th>Option name</th>
+                            <th>Option value</th>
+                            <th>Accepted value</th>
+                            <th>Description</th>
+                        </tr>
+                    </tfoot>
+                </table>
+                <br />
+                <br />
+            </li>
+        </ul>
+    </form>
+</body>
+</html>

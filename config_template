@@ -1,0 +1,273 @@
+@version: 3.3
+{{#include.enabled}}
+@include "scl.conf"
+{{/include.enabled}}
+
+{{! GLOBAL OPTIONS }}
+options {
+{{#options.global_options}}
+   {{#enabled}}
+   {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}};
+   {{/enabled}}
+{{/options.global_options}}
+};
+
+{{! SOURCES }}
+{{#all_internal_sources}}
+source {{source_name}} {
+    internal(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_internal_sources}}
+{{#all_file_sources}}
+source {{source_name}} {
+    file(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_file_sources}}
+{{#all_pipe_sources}}
+source {{source_name}} {
+    pipe(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_pipe_sources}}
+{{#all_program_sources}}
+source {{source_name}} {
+    program(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_program_sources}}
+{{#all_syslog_sources}}
+source {{source_name}} {
+    syslog(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_syslog_sources}}
+{{#all_system_sources}}
+source {{source_name}} {
+    system(
+        {{#options}}
+        {{#enabled}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_system_sources}}
+{{#all_sunstream_sources}}
+source {{source_name}} {
+    sunstream(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_sunstream_sources}}
+{{#all_tcp_sources}}
+source {{source_name}} {
+    tcp(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_tcp_sources}}
+{{#all_udp_sources}}
+source {{source_name}} {
+    udp(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_udp_sources}}
+{{#all_unixstream_sources}}
+source {{source_name}} {
+    unixstream(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_unixstream_sources}}
+{{#all_unixdgram_sources}}
+source {{source_name}} {
+    unixdgram(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_unixdgram_sources}}
+
+{{! DESTINATIONS }}
+{{#all_file_destinations}}
+destination {{destination_name}} {
+    file(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_file_destinations}}
+{{#all_mongodb_destinations}}
+destination {{destination_name}} {
+    mongodb(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_mongodb_destinations}}
+{{#all_pipe_destinations}}
+destination {{destination_name}} {
+    pipe(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_pipe_destinations}}
+{{#all_program_destinations}}
+destination {{destination_name}} {
+    program(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_program_destinations}}
+{{#all_sql_destinations}}
+destination {{destination_name}} {
+    sql(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_sql_destinations}}
+{{#all_syslog_destinations}}
+destination {{destination_name}} {
+    syslog(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_syslog_destinations}}
+{{#all_tcp_destinations}}
+destination {{destination_name}} {
+    tcp(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_tcp_destinations}}
+{{#all_udp_destinations}}
+destination {{destination_name}} {
+    udp(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_udp_destinations}}
+{{#all_unixstream_destinations}}
+destination {{destination_name}} {
+    unixstream(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_unixstream_destinations}}
+{{#all_unixdgram_destinations}}
+destination {{destination_name}} {
+    unixdgram(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_unixdgram_destinations}}
+{{#all_usertty_destinations}}
+destination {{destination_name}} {
+    usertty(
+        {{#options}}
+        {{#enabled}}
+            {{#generate_enabled_options}} {{.}} {{/generate_enabled_options}}
+        {{/enabled}}
+        {{/options}}
+    );
+};
+{{/all_usertty_destinations}}
+
+{{! LOG PATHS }}
+{{#paths}}
+log {
+    {{#sources}}
+        source({{.}});
+    {{/sources}}
+    {{#destinations}}
+        destination({{.}});
+    {{/destinations}}
+    {{#flags}}
+        flags({{.}});
+    {{/flags}}
+};
+{{/paths}}

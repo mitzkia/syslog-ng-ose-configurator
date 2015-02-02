@@ -1,0 +1,56 @@
+﻿* {
+    padding:    0;
+    margin:     0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:   13px;
+    line-height: 18px;
+    color:#333333;
+    background:gray;
+}
+
+div#content {
+    float: left;
+    width: 75%;
+}
+
+ul#box li {
+    list-style-type: none;
+}
+
+h1{
+    text-align:center;
+}
+
+p{
+    display:inline;
+    font-size:140%;
+}
+
+.right{
+float:right;
+}
+
+.button{
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  padding: 6px 20px;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  overflow: visible;
+  font: bold 13px arial, helvetica, sans-serif;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #555;
+  background-color: #ddd;
+    transition: background-color .2s ease-out;
+    background-clip: padding-box;
+    border-radius: 3px;
+    background-image: linear-gradient(top, rgba(255,255,255,1),
+                                         rgba(255,255,255,0)),
+  }
+

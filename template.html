@@ -1,0 +1,39 @@
+<!--
+ * syslog-ng OSE configurator
+ *
+ * Copyright 2012, Andras Mitzki
+ * License: GNU GENERAL PUBLIC LICENSE v3
+ *
+ * Date: Wed Dec 19 10:03:56 CET 2012
+-->
+
+<html>
+<body>
+<br />
+<h1>Template configuration</h1>
+<br />
+<table class="bordered">
+    <thead>
+        <tr>
+            <th>Sources</th>
+            <th>Destinations</th>
+            <th>Generate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>File source: </p><br />
+                <p>File name: </p><input name="file_name" id="template_file_source1" type="text" ng-model="template_file_source.value" required="required" />
+            </td>
+            <td>
+                <p>TCP destination: </p><br />
+                <p>IP address: </p><input name="ip" id="template_tcp_ip1" type="text" ng-model="template_tcp_ip.value" required="required" /><br />
+                <p>PORT: </p><input name="port" id="template_tcp_port1" type="number" ng-model="template_tcp_port.value" required="required" />
+            </td>
+            <td><a href="" class="button" ng-click="add_template1()">Generate</a></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

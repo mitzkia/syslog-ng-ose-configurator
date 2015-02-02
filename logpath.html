@@ -1,0 +1,54 @@
+<!--
+ * syslog-ng OSE configurator
+ *
+ * Copyright 2012, Andras Mitzki
+ * License: GNU GENERAL PUBLIC LICENSE v3
+ *
+ * Date: Wed Dec 19 10:03:56 CET 2012
+-->
+
+<html>
+<body>
+    <br />
+    <h1>LogPaths</h1>
+    <br />
+    <a href="" class="button" ng-click="add_path()">Add New Log Path</a>
+    <table class="bordered">
+        <thead>
+            <th>Sources</th>
+            <th>Destinations</th>
+            <th>Flags</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="path in paths">
+            <td>
+                <select multiple="yes" ng-model="path.sources">
+                    <option ng-repeat="source in collected_sources" ng-selected="path.sources.indexOf(source.source_name) != -1">{{source.source_name}}</option>
+                </select>
+            </td>
+             <td>
+                <select multiple="yes" ng-model="path.destinations">
+                    <option ng-repeat="destination in collected_destinations" ng-selected="path.destinations.indexOf(destination.destination_name) != -1">{{destination.destination_name}}</option>
+                </select>
+            </td>
+            <td>
+                <select multiple="yes" ng-model="path.flags">
+                    <option>catchall</option>
+                    <option>fallback</option>
+                    <option>final</option>
+                    <option>flow-control</option>
+                </select>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br />
+    <br />
+    <h1>Syslog-ng Config</h1>
+    <br />
+    Include scl.conf to config: <input type="checkbox" ng-model="include.enabled" />
+    <br />
+    <textarea name="TextArea1" style="width: 668px; height: 800px" readonly="readonly">{{generate_config()}}</textarea>
+</body>
+</html>
