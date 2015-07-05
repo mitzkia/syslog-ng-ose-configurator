@@ -1,128 +1,123 @@
-﻿/*!
- * syslog-ng OSE configurator
- *
- * Copyright 2012, Andras Mitzki
- * License: GNU GENERAL PUBLIC LICENSE v3
- *
- * Date: Wed Dec 19 10:03:56 CET 2012
- */
-var configurator = angular.module('configurator', [])
-    configurator.config
-    (
-        function($routeProvider, $locationProvider)
-        {
-            $routeProvider.when ( '/howtouse', {
-                templateUrl: 'howtouse.html'
-            })
-            $routeProvider.when('/global-options', {
-                templateUrl: 'global_options.html',
-                controller: global_options_ctrl
-            })
-            $routeProvider.when('/source-drivers/sinternal', {
-                templateUrl: 'sources_template.html',
-                controller: s_internal_ctrl
-            })
-            $routeProvider.when('/source-drivers/sfile', {
-                templateUrl: 'sources_template.html',
-                controller: s_file_ctrl
-            })
-            $routeProvider.when('/source-drivers/spipe', {
-                templateUrl: 'sources_template.html',
-                controller: s_pipe_ctrl
-            })
-            $routeProvider.when('/source-drivers/sprogram', {
-                templateUrl: 'sources_template.html',
-                controller: s_program_ctrl
-            })
-            $routeProvider.when('/source-drivers/ssunstream', {
-                templateUrl: 'sources_template.html',
-                controller: s_sunstream_ctrl
-            })
-            $routeProvider.when('/source-drivers/ssyslog', {
-                templateUrl: 'sources_template.html',
-                controller: s_syslog_ctrl
-            })
-            $routeProvider.when('/source-drivers/ssystem', {
-                templateUrl: 'sources_template.html',
-                controller: s_system_ctrl
-            })
-            $routeProvider.when('/source-drivers/stcp', {
-                templateUrl: 'sources_template.html',
-                controller: s_tcp_ctrl
-            })
-            $routeProvider.when('/source-drivers/sudp', {
-                templateUrl: 'sources_template.html',
-                controller: s_udp_ctrl
-            })
-            $routeProvider.when('/source-drivers/sunixstream', {
-                templateUrl: 'sources_template.html',
-                controller: s_unixstream_ctrl
-            })
-            $routeProvider.when('/source-drivers/sunixdgram', {
-                templateUrl: 'sources_template.html',
-                controller: s_unixdgram_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dfile', {
-                templateUrl: 'destinations_template.html',
-                controller: d_file_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dmongodb', {
-                templateUrl: 'destinations_template.html',
-                controller: d_mongodb_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dpipe', {
-                templateUrl: 'destinations_template.html',
-                controller: d_pipe_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dprogram', {
-                templateUrl: 'destinations_template.html',
-                controller: d_program_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dsql', {
-                templateUrl: 'destinations_template.html',
-                controller: d_sql_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dsyslog', {
-                templateUrl: 'destinations_template.html',
-                controller: d_syslog_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dtcp', {
-                templateUrl: 'destinations_template.html',
-                controller: d_tcp_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dudp', {
-                templateUrl: 'destinations_template.html',
-                controller: d_udp_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dunixstream', {
-                templateUrl: 'destinations_template.html',
-                controller: d_unixstream_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dunixdgram', {
-                templateUrl: 'destinations_template.html',
-                controller: d_unixdgram_ctrl
-            })
-            $routeProvider.when('/destination-drivers/dusertty', {
-                templateUrl: 'destinations_template.html',
-                controller: d_usertty_ctrl
-            })
-            $routeProvider.when('/logpath', {
-                templateUrl: 'logpath.html',
-                controller: logpath_ctrl
-            })
-            $routeProvider.when('/template', {
-                templateUrl: 'template.html',
-                controller: template_ctrl
-            })
-            $routeProvider.otherwise({
-                redirectTo: '/global-options'
-            })
-        }
-    );
+  /*!
+  * syslog-ng OSE configurator
+  *
+  * Copyright 2012, Andras Mitzki
+  * License: GNU GENERAL PUBLIC LICENSE v3
+  *
+  * Date: Wed Dec 19 10:03:56 CET 2012
+  */
+var configurator = angular.module("configurator", ['ngRoute']);
 
-    configurator.run
-    (
-        function($rootScope)
+configurator.config(function($routeProvider, $locationProvider) {
+    $routeProvider.when ( '/howtouse', {
+        templateUrl: 'howtouse.html'
+    })
+    $routeProvider.when('/global-options', {
+        templateUrl: 'global_options.html',
+        controller: global_options_ctrl
+    })
+    $routeProvider.when('/source-drivers/sinternal', {
+        templateUrl: 'sources_template.html',
+        controller: s_internal_ctrl
+    })
+    $routeProvider.when('/source-drivers/sfile', {
+        templateUrl: 'sources_template.html',
+        controller: s_file_ctrl
+    })
+    $routeProvider.when('/source-drivers/spipe', {
+        templateUrl: 'sources_template.html',
+        controller: s_pipe_ctrl
+    })
+    $routeProvider.when('/source-drivers/sprogram', {
+        templateUrl: 'sources_template.html',
+        controller: s_program_ctrl
+    })
+    $routeProvider.when('/source-drivers/ssunstream', {
+        templateUrl: 'sources_template.html',
+        controller: s_sunstream_ctrl
+    })
+    $routeProvider.when('/source-drivers/ssyslog', {
+        templateUrl: 'sources_template.html',
+        controller: s_syslog_ctrl
+    })
+    $routeProvider.when('/source-drivers/ssystem', {
+        templateUrl: 'sources_template.html',
+        controller: s_system_ctrl
+    })
+    $routeProvider.when('/source-drivers/stcp', {
+        templateUrl: 'sources_template.html',
+        controller: s_tcp_ctrl
+    })
+    $routeProvider.when('/source-drivers/sudp', {
+        templateUrl: 'sources_template.html',
+        controller: s_udp_ctrl
+    })
+    $routeProvider.when('/source-drivers/sunixstream', {
+        templateUrl: 'sources_template.html',
+        controller: s_unixstream_ctrl
+    })
+    $routeProvider.when('/source-drivers/sunixdgram', {
+        templateUrl: 'sources_template.html',
+        controller: s_unixdgram_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dfile', {
+        templateUrl: 'destinations_template.html',
+        controller: d_file_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dmongodb', {
+        templateUrl: 'destinations_template.html',
+        controller: d_mongodb_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dpipe', {
+        templateUrl: 'destinations_template.html',
+        controller: d_pipe_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dprogram', {
+        templateUrl: 'destinations_template.html',
+        controller: d_program_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dsql', {
+        templateUrl: 'destinations_template.html',
+        controller: d_sql_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dsyslog', {
+        templateUrl: 'destinations_template.html',
+        controller: d_syslog_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dtcp', {
+        templateUrl: 'destinations_template.html',
+        controller: d_tcp_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dudp', {
+        templateUrl: 'destinations_template.html',
+        controller: d_udp_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dunixstream', {
+        templateUrl: 'destinations_template.html',
+        controller: d_unixstream_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dunixdgram', {
+        templateUrl: 'destinations_template.html',
+        controller: d_unixdgram_ctrl
+    })
+    $routeProvider.when('/destination-drivers/dusertty', {
+        templateUrl: 'destinations_template.html',
+        controller: d_usertty_ctrl
+    })
+    $routeProvider.when('/logpath', {
+        templateUrl: 'logpath.html',
+        controller: logpath_ctrl
+    })
+    $routeProvider.when('/template', {
+        templateUrl: 'template.html',
+        controller: template_ctrl
+    })
+    $routeProvider.otherwise({
+        redirectTo: '/global-options'
+    })
+});
+
+configurator.run(function($rootScope) {
         {
             $rootScope.options =
             {
@@ -591,15 +586,14 @@ var configurator = angular.module('configurator', [])
                     }
                 );
             }
+		}
+})
 
-        }
-    );
-
-function AppCtrl($scope, $route, $routeParams, $location) {
+configurator.controller("AppCtrl", function($scope, $route, $routeParams, $location) {
     $scope.$route = $route;
     $scope.$location = $location;
     $scope.$routeParams = $routeParams;
-}
+});
 
 function global_options_ctrl($scope, $routeParams) {
     $scope.name = "Global Options";
